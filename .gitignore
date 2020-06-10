@@ -1,2 +1,3 @@
 *.vs
 /Data_Structures/Debug/*
+*/Debug/*
