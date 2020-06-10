@@ -17,6 +17,8 @@ public:
 		SimpleLinkedList() {}
 		~SimpleLinkedList() { destroy(mHead); }
 	int	size() const { return mSize; }
+
+	// insert at front of list
 	void	insert(const dataType& _data)
 	{
 		if (!size())
@@ -31,7 +33,9 @@ public:
 		}
 		++mSize;
 	}
-	void remove() // removes first element in list
+
+	// removes first element in list
+	void remove() 
 	{
 		if (!size()) return;
 		Node<dataType>* tempPtr = mHead->next;
@@ -40,6 +44,7 @@ public:
 		--mSize;
 	}
 
+	// print list members to client provided std::stream
 	void	print(std::ostream& _outs)
 	{
 		Node<dataType>* traverser = mHead;
@@ -51,6 +56,7 @@ public:
 	}
 private: // private methods
 
+	// recursively deallocates list memory
 	void destroy(Node<dataType>* _currentNode)
 	{
 		if (!_currentNode) return;
@@ -69,7 +75,7 @@ private: // private data
 
 int main()
 {
-
+	//--------------------Testing list with int-----------------------------
 	SimpleLinkedList<int> list;
 	list.insert(22);
 	list.insert(11);
@@ -84,8 +90,24 @@ int main()
 	list.remove();
 
 	list.print(std::cout);
+	std::cout << std::endl;
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 
+	// ---------------- Testing list with char --------------------
+	SimpleLinkedList<char> charList;
+	charList.insert('c');
+	charList.insert('a');
+	charList.insert('t');
+	charList.insert('s');
+
+	charList.print(std::cout);
+	std::cout << std::endl;
+
+	charList.remove();
+
+	charList.print(std::cout);
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 	return 0;
 }
