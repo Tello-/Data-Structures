@@ -15,10 +15,10 @@ template<typename dataType>
 class SimpleLinkedList
 {
 public:
-					SimpleLinkedList() {}
-					~SimpleLinkedList() {}
-	int				size() const { return mSize; }
-	void				insert(const dataType& _data)
+		SimpleLinkedList() {}
+	     ~SimpleLinkedList() {}
+	int	size() const { return mSize; }
+	void	insert(const dataType& _data)
 	{
 		if (!size())
 		{
@@ -32,9 +32,16 @@ public:
 		}
 		++mSize;
 	}
-	
+	void remove() // removes first element in list
+	{
+		if (!size()) return;
+		Node<dataType>* tempPtr = mHead->next;
+		delete mHead;
+		mHead = tempPtr;
+		--mSize;
+	}
 
-	void				print(std::ostream& _outs)
+	void	print(std::ostream& _outs)
 	{
 		Node<dataType>* traverser = mHead;
 		while (traverser)
@@ -58,6 +65,13 @@ int main()
 	list.insert(11);
 	list.insert(99);
 	list.insert(77);
+
+	list.print(std::cout);
+
+	std::cout << std::endl;
+
+
+	list.remove();
 
 	list.print(std::cout);
 
