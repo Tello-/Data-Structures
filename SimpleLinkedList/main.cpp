@@ -16,7 +16,7 @@ class SimpleLinkedList
 {
 public:
 		SimpleLinkedList() {}
-	     ~SimpleLinkedList() {}
+		~SimpleLinkedList() { destroy(mHead); }
 	int	size() const { return mSize; }
 	void	insert(const dataType& _data)
 	{
@@ -50,7 +50,18 @@ public:
 			traverser = traverser->next;
 		}
 	}
-private:
+private: // private methods
+
+	void destroy(Node<dataType>* _currentNode)
+	{
+		if (!_currentNode) return;
+		destroy(_currentNode->next);
+		delete _currentNode;
+		--mSize;
+
+	}
+
+private: // private data
 	int mSize{ 0 };
 	Node<dataType>* mHead{ nullptr };
 	Node<dataType>* mTail{ nullptr };
