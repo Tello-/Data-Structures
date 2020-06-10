@@ -17,6 +17,7 @@ public:
 		SimpleLinkedList() {}
 		~SimpleLinkedList() { destroy(mHead); }
 	int	size() const { return mSize; }
+	bool empty() const { return mSize == 0; }
 
 	// insert at front of list
 	void	insert(const dataType& _data)
