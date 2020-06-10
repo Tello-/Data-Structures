@@ -1,5 +1,4 @@
 // This is an implementation of a single file, simple linked list
-#include <ostream>
 #include <iostream>
 
 
