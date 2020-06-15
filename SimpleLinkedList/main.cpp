@@ -55,29 +55,10 @@ public:
 	
 
 
-	// print list members to client provided std::stream
-	void	print(std::ostream& _outs)
+	void print(std::ostream& outs, bool printAsVisual = 0)
 	{
-		Node<dataType>* traverser = mHead;
-		while (traverser)
-		{
-			_outs << traverser->data << ", ";
-			traverser = traverser->next;
-		}
-	}
-
-	void printVisualList() const
-	{
-		if (empty()) return;
-		Node<dataType>* traverser = mHead;
-		std::cout << "[" << traverser->data << " | " << traverser->next << "]";
-		traverser = traverser->next;
-		while (traverser)
-		{
-			std::cout << " -> " << "[" << traverser->data << " | " << traverser->next << "]";
-			traverser = traverser->next;
-		}
-		return;
+		if (printAsVisual) printVisualList(outs);
+		else printData(outs);
 	}
 
 
@@ -99,7 +80,30 @@ private: // private methods
 
 	}
 
-	
+	// print list members to client provided std::stream
+	void	printData(std::ostream& outs)
+	{
+		Node<dataType>* traverser = mHead;
+		while (traverser)
+		{
+			outs << traverser->data << ", ";
+			traverser = traverser->next;
+		}
+	}
+
+	void printVisualList(std::ostream& outs) const
+	{
+		if (empty()) return;
+		Node<dataType>* traverser = mHead;
+		std::cout << "[" << traverser->data << " | " << traverser->next << "]";
+		traverser = traverser->next;
+		while (traverser)
+		{
+			std::cout << " -> " << "[" << traverser->data << " | " << traverser->next << "]";
+			traverser = traverser->next;
+		}
+		return;
+	}
 
 
 	// recursively deallocates list memory
@@ -131,7 +135,7 @@ int main()
 	list.print(std::cout);
 	std::cout << "\n";
 
-	list.printVisualList();
+	list.print(std::cout, true);
 	std::cout << "\n";
 
 	list.remove();
@@ -150,6 +154,11 @@ int main()
 	
 	charList.print(std::cout);
 	std::cout << "\n";
+
+
+	charList.print(std::cout, true);
+	std::cout << "\n";
+
 	int idx = 2;
 	std::cout << "This is a test of overloaded [" << idx << "]: " << charList[idx] << "\n";
 
