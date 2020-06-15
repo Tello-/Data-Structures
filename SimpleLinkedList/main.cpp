@@ -14,8 +14,16 @@ template<typename dataType>
 class SimpleLinkedList
 {
 public:
-		SimpleLinkedList() {}
-		~SimpleLinkedList() { destroy(mHead); }
+	SimpleLinkedList() {}
+	~SimpleLinkedList() { destroy(mHead); }
+	
+		
+	dataType& operator[](int idx)
+	{
+		return traverseTo(idx)->data;
+	}
+		
+		
 	int	size() const { return mSize; }
 	bool empty() const { return mSize == 0; }
 
@@ -59,9 +67,20 @@ public:
 	}
 private: // private methods
 
-	Node<dataType>* pointerTo(int _index)
+	Node<dataType>* traverseTo(int idx)
 	{
-		if (_index < 0 || _index >= mSize) return;
+		if (empty()) return nullptr;
+		if (idx < 0 || idx >= mSize) return nullptr;
+		if (idx == 0) return mHead;
+		int currIdx = 0;
+		Node<dataType>* pTraverser = mHead;
+		while (currIdx != idx)
+		{
+			pTraverser = pTraverser->next;
+			++currIdx;
+		}
+		return pTraverser;
+
 	}
 
 
@@ -93,14 +112,14 @@ int main()
 
 	list.print(std::cout);
 
-	std::cout << std::endl;
+	std::cout << "\n";
 
 
 	list.remove();
 
 	list.print(std::cout);
-	std::cout << std::endl;
-// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+	std::cout << "\n";
+	// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 
 	// ---------------- Testing list with char --------------------
@@ -109,9 +128,11 @@ int main()
 	charList.insert('a');
 	charList.insert('t');
 	charList.insert('s');
-
+	
 	charList.print(std::cout);
-	std::cout << std::endl;
+	std::cout << "\n";
+	int idx = 2;
+	std::cout << "This is a test of overloaded [" << idx << "]: " << charList[idx] << "\n";
 
 	charList.remove();
 
