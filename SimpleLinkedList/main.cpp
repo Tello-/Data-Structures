@@ -44,6 +44,8 @@ public:
 		mHead = tempPtr;
 		--mSize;
 	}
+	
+
 
 	// print list members to client provided std::stream
 	void	print(std::ostream& _outs)
@@ -56,6 +58,12 @@ public:
 		}
 	}
 private: // private methods
+
+	Node<dataType>* pointerTo(int _index)
+	{
+		if (_index < 0 || _index >= mSize) return;
+	}
+
 
 	// recursively deallocates list memory
 	void destroy(Node<dataType>* _currentNode)
