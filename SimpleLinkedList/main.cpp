@@ -18,7 +18,7 @@ public:
 	~SimpleLinkedList() { destroy(mHead); }
 	
 		
-	dataType& operator[](int idx)
+	dataType& operator[](std::size_t idx)
 	{
 		return traverseTo(idx)->data;
 	}
@@ -67,7 +67,7 @@ public:
 	}
 private: // private methods
 
-	Node<dataType>* traverseTo(int idx)
+	Node<dataType>* traverseTo(std::size_t idx)
 	{
 		if (empty()) return nullptr;
 		if (idx < 0 || idx >= mSize) return nullptr;
