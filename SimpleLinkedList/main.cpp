@@ -65,12 +65,28 @@ public:
 			traverser = traverser->next;
 		}
 	}
+
+	void printVisualList() const
+	{
+		if (empty()) return;
+		Node<dataType>* traverser = mHead;
+		std::cout << "[" << traverser->data << " | " << traverser->next << "]";
+		traverser = traverser->next;
+		while (traverser)
+		{
+			std::cout << " -> " << "[" << traverser->data << " | " << traverser->next << "]";
+			traverser = traverser->next;
+		}
+		return;
+	}
+
+
 private: // private methods
 
-	Node<dataType>* traverseTo(std::size_t idx)
+	Node<dataType>* traverseTo(std::size_t idx) const
 	{
 		if (empty()) return nullptr;
-		if (idx < 0 || idx >= mSize) return nullptr;
+		if (idx < 0 || idx >= size()) return nullptr;
 		if (idx == 0) return mHead;
 		int currIdx = 0;
 		Node<dataType>* pTraverser = mHead;
@@ -82,6 +98,8 @@ private: // private methods
 		return pTraverser;
 
 	}
+
+	
 
 
 	// recursively deallocates list memory
@@ -111,9 +129,10 @@ int main()
 	list.insert(77);
 
 	list.print(std::cout);
-
 	std::cout << "\n";
 
+	list.printVisualList();
+	std::cout << "\n";
 
 	list.remove();
 
