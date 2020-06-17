@@ -1,4 +1,13 @@
 // This is an implementation of a single file, simple linked list
+/* Current Operations include:
+Insertion at front
+Removal at front
+Destruction
+Print linked representation
+Print data only
+Overloaded index operator
+*/
+
 #include <iostream>
 
 
