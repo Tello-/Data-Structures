@@ -55,7 +55,7 @@ public:
 	
 
 	// Print delegates to 1 of 2 differnt private print methods depending on what the flag parameter is set to
-	void print(std::ostream& outs, bool printAsVisual = 0)
+	void print(std::ostream& outs, bool printAsVisual = false)
 	{
 		if (printAsVisual) printVisualList(outs);
 		else printData(outs);
@@ -137,15 +137,17 @@ int main()
 	list.insert(99);
 	list.insert(77);
 
+	
+	print("Int List Demo");
+	print("\n");
 	list.print(std::cout);
 	print("\n");
-
 	list.print(std::cout, true);
 	print("\n");
-
 	list.remove();
-
 	list.print(std::cout);
+	print("\n");
+	print("Int List Demo End");
 	print("\n");
 	// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -157,6 +159,10 @@ int main()
 	charList.insert('t');
 	charList.insert('s');
 	
+	print("\n");
+	print("Char List Demo");
+	print("\n");
+
 	charList.print(std::cout);
 	print("\n");
 
@@ -170,7 +176,35 @@ int main()
 	charList.remove();
 
 	charList.print(std::cout);
+	print("\n");
+	print("Char List Demo End");
+	print("\n");
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+
+
+	// -------------Testing String list to file-------------------------------
+	SimpleLinkedList<std::string> stringList;
+	stringList.insert("Josh");
+	stringList.insert("is");
+	stringList.insert("cool");
+
+	print("\n");
+
+	print("String List Demo");
+	print("\n");
+	stringList.print(std::cout);
+	print("\n");
+	stringList.print(std::cout, true);
+	print("\n");
+	print("String List Demo End");
+	print("\n");
+	print("\n");
+
+
+
+
+	//::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 	return 0;
 }
