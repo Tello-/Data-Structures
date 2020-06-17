@@ -10,7 +10,6 @@ Overloaded index operator
 
 #include <iostream>
 
-
 template<typename T>
 struct Node
 {
@@ -30,6 +29,16 @@ public:
 	dataType& operator[](std::size_t idx)
 	{
 		return traverseTo(idx)->data;
+	}
+
+	// concatinates rhs to the end of "this"
+	SimpleLinkedList<dataType>& operator+(const SimpleLinkedList<dataType>& rhs)
+	{
+		for (int i = 0; i < rhs.size(); ++i)
+		{
+
+		}
+
 	}
 		
 		
@@ -51,7 +60,20 @@ public:
 		}
 		++mSize;
 	}
-
+	void append(const dataType& data)
+	{
+		if (empty())
+		{
+			this->insert(data);
+		}
+		else
+		{
+			Node<dataType>* temp = new Node<dataType>{ data, nullptr };
+			mTail->next = temp;
+			mTail = temp;
+			temp = nullptr;
+		}
+	}
 	// removes first element in list
 	bool remove() 
 	{
@@ -206,6 +228,15 @@ int main()
 	print("\n");
 	stringList.print(std::cout, true);
 	print("\n");
+	stringList.append("as");
+	stringList.append("heck");
+	print("\n");
+	stringList.print(std::cout);
+	print("\n");
+	stringList.print(std::cout, true);
+	print("\n");
+
+
 	print("String List Demo End");
 	print("\n");
 	print("\n");
