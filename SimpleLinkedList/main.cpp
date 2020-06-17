@@ -25,7 +25,7 @@ public:
 		
 		
 	int	size() const { return mSize; }
-	bool empty() const { return mSize == 0; }
+	bool empty() const { return !size(); }
 
 	// insert at front of list
 	void	insert(const dataType& _data)
@@ -44,9 +44,9 @@ public:
 	}
 
 	// removes first element in list
-	void remove() 
+	bool remove() 
 	{
-		if (!size()) return;
+		if (empty()) return false;
 		Node<dataType>* tempPtr = mHead->next;
 		delete mHead;
 		mHead = tempPtr;
@@ -54,7 +54,7 @@ public:
 	}
 	
 
-
+	// Print delegates to 1 of 2 differnt private print methods depending on what the flag parameter is set to
 	void print(std::ostream& outs, bool printAsVisual = 0)
 	{
 		if (printAsVisual) printVisualList(outs);
@@ -123,6 +123,11 @@ private: // private data
 };
 
 
+
+void print(std::string text)
+{
+	std::cout << text;
+}
 int main()
 {
 	//--------------------Testing list with int-----------------------------
@@ -133,15 +138,15 @@ int main()
 	list.insert(77);
 
 	list.print(std::cout);
-	std::cout << "\n";
+	print("\n");
 
 	list.print(std::cout, true);
-	std::cout << "\n";
+	print("\n");
 
 	list.remove();
 
 	list.print(std::cout);
-	std::cout << "\n";
+	print("\n");
 	// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 
@@ -153,11 +158,11 @@ int main()
 	charList.insert('s');
 	
 	charList.print(std::cout);
-	std::cout << "\n";
+	print("\n");
 
 
 	charList.print(std::cout, true);
-	std::cout << "\n";
+	print("\n");
 
 	int idx = 2;
 	std::cout << "This is a test of overloaded [" << idx << "]: " << charList[idx] << "\n";
