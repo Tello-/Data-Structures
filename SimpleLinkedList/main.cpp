@@ -32,12 +32,14 @@ public:
 	}
 
 	// concatinates rhs to the end of "this"
-	SimpleLinkedList<dataType>& operator+(const SimpleLinkedList<dataType>& rhs)
+	SimpleLinkedList<dataType>& operator+(SimpleLinkedList<dataType>& rhs)
 	{
 		for (int i = 0; i < rhs.size(); ++i)
 		{
-
+			this->append(rhs[i]);
+			++mSize;
 		}
+		return *this;
 
 	}
 		
@@ -202,7 +204,8 @@ int main()
 	print("\n");
 
 	int idx = 2;
-	std::cout << "This is a test of overloaded [" << idx << "]: " << charList[idx] << "\n";
+	print("This is a test of overloaded []: ");
+	std::cout << charList[0];
 
 	charList.remove();
 
@@ -240,10 +243,25 @@ int main()
 	print("String List Demo End");
 	print("\n");
 	print("\n");
+	//::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 
-
-
+	//-------------------Test for overloaded +-------------------------------
+	print("\n");
+	print("Char List2 Demo");
+	print("\n");
+	// TODO overload assignment operator first....
+	SimpleLinkedList<char> charList2;
+	charList2.insert('8');
+	charList2.insert('8');
+	charList2.insert('8');
+	charList2.print(std::cout, false);
+	print("\n");
+	charList2.print(std::cout, true);
+	print("\n");
+	print("\n");
+	print("Char List2 Demo End");
+	print("\n");
 	//::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 	return 0;
