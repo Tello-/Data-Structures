@@ -303,7 +303,7 @@ int main()
 	print("Char List2 Demo End");
 	print("\n");*/
 	//::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-	SimpleLinkedList<char> charList3( charList );
+	SimpleLinkedList<char> charList3{ charList };
 	print("\n");
 	charList3.print(std::cout, true);
 	print("\n");
