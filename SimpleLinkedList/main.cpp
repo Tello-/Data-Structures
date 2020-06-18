@@ -26,6 +26,7 @@ public:
 	~SimpleLinkedList() { destroy(mHead); }
 	
 		
+	// allows indexed access to list
 	dataType& operator[](std::size_t idx)
 	{
 		return traverseTo(idx)->data;
@@ -41,6 +42,21 @@ public:
 		}
 		return *this;
 
+	}
+
+	SimpleLinkedList<dataType>& operator=(SimpleLinkedList<dataType>& rhs)
+	{
+		if (this == &rhs) return *this; // handle self assignment
+		destroy(mHead);					// destroy current list
+		mHead = nullptr;					// cap off 
+		if (rhs.empty()) return *this;
+		Node<dataType>* rhsTraverser = rhs.mHead;
+		while (rhsTraverser)
+		{
+			this->append(rhsTraverser->data);
+			rhsTraverser = rhsTraverser->next;
+		}
+		this->mSize = rhs.mSize;
 	}
 		
 		
@@ -165,7 +181,7 @@ void print(std::string text)
 int main()
 {
 	//--------------------Testing list with int-----------------------------
-	SimpleLinkedList<int> list;
+	/*SimpleLinkedList<int> list;
 	list.insert(22);
 	list.insert(11);
 	list.insert(99);
@@ -182,7 +198,7 @@ int main()
 	list.print(std::cout);
 	print("\n");
 	print("Int List Demo End");
-	print("\n");
+	print("\n");*/
 	// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 
@@ -206,9 +222,13 @@ int main()
 
 	int idx = 2;
 	print("This is a test of overloaded []: ");
-	std::cout << charList[0];
+	print("\n");
 
+	std::cout << charList[0];
+	print("\n");
+	print("Test removal:");
 	charList.remove();
+	print("\n");
 
 	charList.print(std::cout);
 	print("\n");
@@ -219,7 +239,7 @@ int main()
 
 
 	// -------------Testing String list to file-------------------------------
-	SimpleLinkedList<std::string> stringList;
+	/*SimpleLinkedList<std::string> stringList;
 	stringList.insert("Josh");
 	stringList.insert("is");
 	stringList.insert("cool");
@@ -243,7 +263,7 @@ int main()
 
 	print("String List Demo End");
 	print("\n");
-	print("\n");
+	print("\n");*/
 	//::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 
@@ -251,7 +271,6 @@ int main()
 	print("\n");
 	print("Char List2 Demo");
 	print("\n");
-	// TODO overload assignment operator first....
 	SimpleLinkedList<char> charList2;
 	charList2.insert('8');
 	charList2.insert('8');
@@ -260,7 +279,14 @@ int main()
 	print("\n");
 	charList2.print(std::cout, true);
 	print("\n");
+	print("Using assignment to set new list equal to old list:");
 	print("\n");
+	charList2 = charList;
+	print("\n");
+	charList2.print(std::cout, true);
+	print("\n");
+
+
 	print("Char List2 Demo End");
 	print("\n");
 	//::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
