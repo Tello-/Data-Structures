@@ -119,7 +119,8 @@ private: // private methods
 		Node<dataType>* traverser = mHead;
 		while (traverser)
 		{
-			outs << traverser->data << ", ";
+			outs << traverser->data;
+			if(traverser->next) outs << ", ";
 			traverser = traverser->next;
 		}
 	}
