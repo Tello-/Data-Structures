@@ -22,7 +22,20 @@ template<typename dataType>
 class SimpleLinkedList
 {
 public:
-	SimpleLinkedList() {}
+	SimpleLinkedList() = default;
+	SimpleLinkedList(const SimpleLinkedList<dataType>& rhs)
+	{
+		std::cout << "Copy Ctor activated!" << std::endl;
+		if (rhs.empty()) this->mHead = nullptr;
+
+		Node<dataType>* rhsTraverser = rhs.mHead;
+		while (rhsTraverser)
+		{
+			this->append(rhsTraverser->data);
+			rhsTraverser = rhsTraverser->next;
+		}
+		this->mSize = rhs.mSize;
+	}
 	~SimpleLinkedList() { destroy(mHead); }
 	
 		
@@ -268,7 +281,7 @@ int main()
 
 
 	//-------------------Test for overloaded +-------------------------------
-	print("\n");
+	/*print("\n");
 	print("Char List2 Demo");
 	print("\n");
 	SimpleLinkedList<char> charList2;
@@ -288,8 +301,19 @@ int main()
 
 
 	print("Char List2 Demo End");
-	print("\n");
+	print("\n");*/
 	//::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+	SimpleLinkedList<char> charList3( charList );
+	print("\n");
+	charList3.print(std::cout, true);
+	print("\n");
+	print("\n");
+
+
+	//----------------Test Copy CTOR-----------------------
+
+	//:::::::::::::::::::::::::::::::::::::::::::::::::::::
+
 
 	return 0;
 }
